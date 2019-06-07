@@ -18,6 +18,10 @@ public class UserResponseDTO {
 	private String emailAddress;
 	private List<ProjectRole> roles = new ArrayList<>();
 
+	public UserResponseDTO() {
+
+	}
+
 	public String getUserName() {
 		return userName;
 	}

@@ -1,5 +1,7 @@
 package com.eduard.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -26,6 +28,13 @@ public class UserRepositoryImpl implements UserRepository {
 		em.remove(user);
 		em.flush();
 		return "User deleted successfully";
+	}
+
+	@Override
+	public List<User> getUsers() {
+		List<User> users = em.createQuery("From User").getResultList();
+
+		return users;
 	}
 
 }

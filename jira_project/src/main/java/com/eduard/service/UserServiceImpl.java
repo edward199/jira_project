@@ -2,6 +2,8 @@ package com.eduard.service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,17 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public String unregisterUser(int id) {
 		return userRepository.deleteUser(id);
+	}
+
+	@Override
+	@Transactional
+	public List<UserResponseDTO> getUsers() {
+		List<User> users = userRepository.getUsers();
+		List<UserResponseDTO> usersDTO = new ArrayList<>();
+		for (User user : users) {
+			usersDTO.add(new DozerBeanMapper().map(user, UserResponseDTO.class));
+		}
+		return usersDTO;
 	}
 
 }

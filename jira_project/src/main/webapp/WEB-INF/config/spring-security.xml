@@ -17,10 +17,10 @@
 		<authentication-provider>
 			<password-encoder ref="passwordEncoder" />
 			<user-service>
-<!-- 				<user name="admin" password="1234"
-					authorities="hasRole(ROLE_ADMIN)" /> -->
-				<user name="user" password="$2a$10$KlllAT.rwjDnrYxn0XneMuSbWKIDIAJ08Hq9mHSfA1JkV1Slkv9GK"
+				<user name="admin" password="$2a$10$r5ioMcL5vi3D.63/N0jNuOyTgJQxWS/yS/x5hCKsfhVj4rYSYK0ma"
 					authorities="hasRole(ROLE_ADMIN)" />
+				<user name="user" password="$2a$10$KlllAT.rwjDnrYxn0XneMuSbWKIDIAJ08Hq9mHSfA1JkV1Slkv9GK"
+					authorities="hasRole(ROLE_USER)" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>

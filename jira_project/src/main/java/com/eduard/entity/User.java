@@ -55,6 +55,9 @@ public class User {
 			@JoinColumn(name = "project_role_id") })
 	private List<ProjectRole> roles = new ArrayList<>();
 
+	public User() {
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -8,8 +8,8 @@ import com.eduard.entity.ProjectRole;
 
 public class UserRequestDTO {
 
-	private String password;
 	private String userName;
+	private String password;
 	private int active;
 	private Timestamp createdDate;
 	private Timestamp updatedDate;
@@ -18,6 +18,10 @@ public class UserRequestDTO {
 	private String displayName;
 	private String emailAddress;
 	private List<ProjectRole> roles = new ArrayList<>();
+
+	public UserRequestDTO() {
+
+	}
 
 	public String getPassword() {
 		return password;
