@@ -1,0 +1,29 @@
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+    http://www.springframework.org/schema/beans/spring-beans.xsd  
+    http://www.springframework.org/schema/security  
+    http://www.springframework.org/schema/security/spring-security.xsd">
+	<http auto-config="true">
+		<!-- <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" /> -->
+
+		<intercept-url pattern="/**" access="authenticated" />
+		<form-login />
+		<http-basic />
+	</http>
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder ref="passwordEncoder" />
+			<user-service>
+<!-- 				<user name="admin" password="1234"
+					authorities="hasRole(ROLE_ADMIN)" /> -->
+				<user name="user" password="$2a$10$KlllAT.rwjDnrYxn0XneMuSbWKIDIAJ08Hq9mHSfA1JkV1Slkv9GK"
+					authorities="hasRole(ROLE_ADMIN)" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+	<beans:bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+</beans:beans>  
