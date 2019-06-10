@@ -1,32 +1,45 @@
 package com.eduard.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.eduard.entity.Project;
+import com.eduard.entity.dto.ProjectDTO;
 import com.eduard.repository.ProjectRepository;
 
 @Service
-public class ProjectServiceImpl implements ProjectService{
+public class ProjectServiceImpl implements ProjectService {
 
 	private ProjectRepository projectRepository;
-	
-	
+
 	@Autowired
 	public ProjectServiceImpl(ProjectRepository projectRepository) {
-		super();
 		this.projectRepository = projectRepository;
 	}
 
-
 	@Transactional
 	@Override
-	public Project addProject(Project project) {
-		return projectRepository.addProject(project);
+	public ProjectDTO addProject(ProjectDTO projectDTO) {
+		Project project = new DozerBeanMapper().map(projectDTO, Project.class);
+		projectRepository.addProject(project);
+		return projectDTO;
 	}
 
-	
-	
+	@Override
+	@Transactional
+	public List<ProjectDTO> getProjects() {
+		List<Project> projects = projectRepository.getProjects();
+		List<ProjectDTO> projectsDTO = new ArrayList<>();
+		for (Project project : projects) {
+			projectsDTO.add(new DozerBeanMapper().map(project, ProjectDTO.class));
+		}
+		return projectsDTO;
+	}
+
 }

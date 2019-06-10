@@ -18,7 +18,6 @@
 					<th>Email</th>
 					<th>Display Name</th>
 				</tr>
-				<!--  loop over and print our customers -->
 				<c:forEach var="tempUser" items="${users}" >
 					<tr>
 						<td>${tempUser.active}</td>

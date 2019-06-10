@@ -25,6 +25,11 @@ public class HomeController {
 		return "privatePage";
 	}
 
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout() {
+		return "logout";
+	}
+
 //	@RequestMapping(value = "/register", method = RequestMethod.GET)
 //	public String registerPage() {
 //		return "register";

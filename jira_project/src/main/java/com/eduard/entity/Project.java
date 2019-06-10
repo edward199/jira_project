@@ -29,16 +29,16 @@ public class Project {
 
 	@Column(name = "leader")
 	private String leader;
-	
+
 	@Column(name = "project_key")
 	private String projectKey;
-	
+
 	@Column(name = "project_name")
 	private String projectName;
 
 	@Column(name = "project_type")
 	private String projectType;
-	
+
 	@Column(name = "url")
 	private String url;
 
@@ -51,12 +51,13 @@ public class Project {
 	private List<Issue> issues = new ArrayList<>();
 
 	@ManyToMany
-	@JoinTable(
-			name = "project_project_roles",
-			joinColumns= {@JoinColumn(name="project_id") },
-			inverseJoinColumns = {@JoinColumn(name="project_role_id")}
-			)
+	@JoinTable(name = "project_project_roles", joinColumns = {
+			@JoinColumn(name = "project_id") }, inverseJoinColumns = { @JoinColumn(name = "project_role_id") })
 	private List<ProjectRole> roles = new ArrayList<>();
+
+	public Project() {
+
+	}
 
 	public int getId() {
 		return id;
@@ -145,6 +146,4 @@ public class Project {
 				+ ", versions=" + versions + ", issues=" + issues + ", roles=" + roles + "]";
 	}
 
-	
-	
 }

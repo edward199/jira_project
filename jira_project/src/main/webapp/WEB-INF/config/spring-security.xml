@@ -7,20 +7,27 @@
     http://www.springframework.org/schema/security  
     http://www.springframework.org/schema/security/spring-security.xsd">
 	<http auto-config="true">
-		<!-- <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" /> -->
-
-		<intercept-url pattern="/**" access="authenticated" />
+		<intercept-url pattern="/admin"
+			access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/user/showRegisterForm"
+			access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/project/showAddProjectForm"
+			access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/**" access="permitAll" />
 		<form-login />
+		<logout />
 		<http-basic />
 	</http>
 	<authentication-manager>
 		<authentication-provider>
 			<password-encoder ref="passwordEncoder" />
 			<user-service>
-				<user name="admin" password="$2a$10$r5ioMcL5vi3D.63/N0jNuOyTgJQxWS/yS/x5hCKsfhVj4rYSYK0ma"
-					authorities="hasRole(ROLE_ADMIN)" />
-				<user name="user" password="$2a$10$KlllAT.rwjDnrYxn0XneMuSbWKIDIAJ08Hq9mHSfA1JkV1Slkv9GK"
-					authorities="hasRole(ROLE_USER)" />
+				<user name="admin"
+					password="$2a$10$r5ioMcL5vi3D.63/N0jNuOyTgJQxWS/yS/x5hCKsfhVj4rYSYK0ma"
+					authorities="ROLE_ADMIN" />
+				<user name="user"
+					password="$2a$10$KlllAT.rwjDnrYxn0XneMuSbWKIDIAJ08Hq9mHSfA1JkV1Slkv9GK"
+					authorities="ROLE_USER" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>

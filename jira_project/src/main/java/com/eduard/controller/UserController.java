@@ -32,17 +32,17 @@ public class UserController {
 
 		model.addAttribute("users", users);
 
-		return "listusers";
+		return "list-users";
 
 	}
 
-	@RequestMapping(value = "/showRegisterForm", method = RequestMethod.GET)
-	public String showRegisterForm(Model theModel) {
+	@RequestMapping(value = "/showUserRegisterForm", method = RequestMethod.GET)
+	public String showUserRegisterForm(Model theModel) {
 		UserRequestDTO userModel = new UserRequestDTO();
 
 		theModel.addAttribute("user", userModel);
 
-		return "register";
+		return "register-user";
 	}
 
 	@ModelAttribute("user")

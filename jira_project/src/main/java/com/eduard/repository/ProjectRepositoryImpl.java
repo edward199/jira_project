@@ -1,5 +1,7 @@
 package com.eduard.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -20,6 +22,14 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 		em.flush();
 
 		return project;
+	}
+
+	@Override
+	public List<Project> getProjects() {
+
+		List<Project> projects = em.createQuery("From Project").getResultList();
+
+		return projects;
 	}
 
 }

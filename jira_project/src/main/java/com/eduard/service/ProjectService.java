@@ -1,9 +1,13 @@
 package com.eduard.service;
 
-import com.eduard.entity.Project;
+import java.util.List;
+
+import com.eduard.entity.dto.ProjectDTO;
 
 public interface ProjectService {
 
-	Project addProject(Project project);
-	
+	ProjectDTO addProject(ProjectDTO projectDTO);
+
+	List<ProjectDTO> getProjects();
+
 }
