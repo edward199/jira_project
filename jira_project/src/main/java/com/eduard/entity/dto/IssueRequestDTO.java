@@ -1,12 +1,12 @@
 package com.eduard.entity.dto;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 import com.eduard.entity.IssuePriority;
 import com.eduard.entity.IssueStatus;
 import com.eduard.entity.IssueType;
 
-public class IssueDTO {
+public class IssueRequestDTO {
 
 	private int parentId;
 	private String projectKey;
@@ -16,9 +16,9 @@ public class IssueDTO {
 	private String creator;
 	private String summary;
 	private String description;
-	private Timestamp created;
-	private Timestamp updated;
-	private Timestamp duedate;
+	private LocalDateTime created;
+	private LocalDateTime updated;
+	private LocalDateTime duedate;
 	private int timeEstimate;
 	private int timeSpent;
 	private IssueType issueType;
@@ -89,27 +89,27 @@ public class IssueDTO {
 		this.description = description;
 	}
 
-	public Timestamp getCreated() {
+	public LocalDateTime getCreated() {
 		return created;
 	}
 
-	public void setCreated(Timestamp created) {
+	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
 
-	public Timestamp getUpdated() {
+	public LocalDateTime getUpdated() {
 		return updated;
 	}
 
-	public void setUpdated(Timestamp updated) {
+	public void setUpdated(LocalDateTime updated) {
 		this.updated = updated;
 	}
 
-	public Timestamp getDuedate() {
+	public LocalDateTime getDuedate() {
 		return duedate;
 	}
 
-	public void setDuedate(Timestamp duedate) {
+	public void setDuedate(LocalDateTime duedate) {
 		this.duedate = duedate;
 	}
 
@@ -155,7 +155,7 @@ public class IssueDTO {
 
 	@Override
 	public String toString() {
-		return "IssueDTO [parentId=" + parentId + ", projectKey=" + projectKey + ", issueNumber=" + issueNumber
+		return "IssueRequestDTO [parentId=" + parentId + ", projectKey=" + projectKey + ", issueNumber=" + issueNumber
 				+ ", projectId=" + projectId + ", reporter=" + reporter + ", creator=" + creator + ", summary="
 				+ summary + ", description=" + description + ", created=" + created + ", updated=" + updated
 				+ ", duedate=" + duedate + ", timeEstimate=" + timeEstimate + ", timeSpent=" + timeSpent

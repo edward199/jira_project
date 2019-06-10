@@ -36,10 +36,10 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/showAddProjectForm", method = RequestMethod.GET)
-	public String showAddProjectForm(Model theModel) {
+	public String showAddProjectForm(Model model) {
 		ProjectDTO projectModel = new ProjectDTO();
 
-		theModel.addAttribute("project", projectModel);
+		model.addAttribute("project", projectModel);
 
 		return "add-project";
 	}
