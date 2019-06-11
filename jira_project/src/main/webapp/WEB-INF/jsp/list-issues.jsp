@@ -17,23 +17,27 @@
 			<th>Creator</th>
 			<th>Summary</th>
 			<th>Description</th>
+			<th>Created</th>
+			<th>Updated</th>
 			<th>Due Date</th>
 			<th>Time Estimate</th>
 			<th>Time Spent</th>
 		</tr>
 		<c:forEach var="tempIssue" items="${issues}">
 			<tr>
-				<td>${tempProject.parentId}</td>
-				<td>${tempProject.projectKey}</td>
-				<td>${tempProject.issueNumber}</td>
-				<td>${tempProject.projectId}</td>
-				<td>${tempProject.reporter}</td>
-				<td>${tempProject.creator}</td>
-				<td>${tempProject.summary}</td>
-				<td>${tempProject.description}</td>
-				<td>${tempProject.duedate}</td>
-				<td>${tempProject.timeEstimate}</td>
-				<td>${tempProject.timeSpent}</td>
+				<td>${tempIssue.parentId}</td>
+				<td>${tempIssue.projectKey}</td>
+				<td>${tempIssue.issueNumber}</td>
+				<td>${tempIssue.projectId}</td>
+				<td>${tempIssue.reporter}</td>
+				<td>${tempIssue.creator}</td>
+				<td>${tempIssue.summary}</td>
+				<td>${tempIssue.description}</td>
+				<td>${tempIssue.created}</td>
+				<td>${tempIssue.updated}</td>
+				<td>${tempIssue.duedate}</td>
+				<td>${tempIssue.timeEstimate}</td>
+				<td>${tempIssue.timeSpent}</td>
 			</tr>
 
 		</c:forEach>

@@ -1,6 +1,6 @@
 package com.eduard.entity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "issue")
@@ -44,13 +46,16 @@ public class Issue {
 	private String description;
 
 	@Column(name = "created")
-	private Timestamp created;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private Date created;
 
 	@Column(name = "updated")
-	private Timestamp updated;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private Date updated;
 
 	@Column(name = "duedate")
-	private Timestamp duedate;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private Date duedate;
 
 	@Column(name = "time_estimate")
 	private int timeEstimate;
@@ -170,27 +175,27 @@ public class Issue {
 		this.issueStatus = issueStatus;
 	}
 
-	public Timestamp getCreated() {
+	public Date getCreated() {
 		return created;
 	}
 
-	public void setCreated(Timestamp created) {
+	public void setCreated(Date created) {
 		this.created = created;
 	}
 
-	public Timestamp getUpdated() {
+	public Date getUpdated() {
 		return updated;
 	}
 
-	public void setUpdated(Timestamp updated) {
+	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
 
-	public Timestamp getDuedate() {
+	public Date getDuedate() {
 		return duedate;
 	}
 
-	public void setDuedate(Timestamp duedate) {
+	public void setDuedate(Date duedate) {
 		this.duedate = duedate;
 	}
 

@@ -1,6 +1,8 @@
 package com.eduard.entity.dto;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.eduard.entity.IssuePriority;
 import com.eduard.entity.IssueStatus;
@@ -16,9 +18,12 @@ public class IssueRequestDTO {
 	private String creator;
 	private String summary;
 	private String description;
-	private LocalDateTime created;
-	private LocalDateTime updated;
-	private LocalDateTime duedate;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private Date created;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private Date updated;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private Date duedate;
 	private int timeEstimate;
 	private int timeSpent;
 	private IssueType issueType;
@@ -89,27 +94,27 @@ public class IssueRequestDTO {
 		this.description = description;
 	}
 
-	public LocalDateTime getCreated() {
+	public Date getCreated() {
 		return created;
 	}
 
-	public void setCreated(LocalDateTime created) {
+	public void setCreated(Date created) {
 		this.created = created;
 	}
 
-	public LocalDateTime getUpdated() {
+	public Date getUpdated() {
 		return updated;
 	}
 
-	public void setUpdated(LocalDateTime updated) {
+	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
 
-	public LocalDateTime getDuedate() {
+	public Date getDuedate() {
 		return duedate;
 	}
 
-	public void setDuedate(LocalDateTime duedate) {
+	public void setDuedate(Date duedate) {
 		this.duedate = duedate;
 	}
 

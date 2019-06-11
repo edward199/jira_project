@@ -84,6 +84,6 @@ public class IssueController {
 		model.addAttribute("timeEstimate", issueRequestDTO.getTimeEstimate());
 		model.addAttribute("timeSpent", issueRequestDTO.getTimeSpent());
 		issueService.addIssue(issueRequestDTO);
-		return "redirect:/project/issue/{projectId}/list";
+		return "redirect:/project/issue/{projectId}/issueList";
 	}
 }

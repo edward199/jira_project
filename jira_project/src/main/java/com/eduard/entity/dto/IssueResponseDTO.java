@@ -1,6 +1,8 @@
 package com.eduard.entity.dto;
 
-import java.security.Timestamp;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.eduard.entity.IssuePriority;
 import com.eduard.entity.IssueStatus;
@@ -15,9 +17,12 @@ public class IssueResponseDTO {
 	private String creator;
 	private String summary;
 	private String description;
-	private Timestamp created;
-	private Timestamp updated;
-	private Timestamp duedate;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private Date created;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private Date updated;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private Date duedate;
 	private int timeEstimate;
 	private int timeSpent;
 	private IssueType issueType;
@@ -88,27 +93,27 @@ public class IssueResponseDTO {
 		this.description = description;
 	}
 
-	public Timestamp getCreated() {
+	public Date getCreated() {
 		return created;
 	}
 
-	public void setCreated(Timestamp created) {
+	public void setCreated(Date created) {
 		this.created = created;
 	}
 
-	public Timestamp getUpdated() {
+	public Date getUpdated() {
 		return updated;
 	}
 
-	public void setUpdated(Timestamp updated) {
+	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
 
-	public Timestamp getDuedate() {
+	public Date getDuedate() {
 		return duedate;
 	}
 
-	public void setDuedate(Timestamp duedate) {
+	public void setDuedate(Date duedate) {
 		this.duedate = duedate;
 	}
 
