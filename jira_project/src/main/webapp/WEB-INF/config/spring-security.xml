@@ -7,13 +7,20 @@
     http://www.springframework.org/schema/security  
     http://www.springframework.org/schema/security/spring-security.xsd">
 	<http auto-config="true">
+		<access-denied-handler error-page="/403" />
 		<intercept-url pattern="/admin"
 			access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/user/showRegisterForm"
+		<intercept-url pattern="/user/showUserRegisterForm"
 			access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/project/showAddProjectForm"
 			access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/**" access="permitAll" />
+		<intercept-url pattern="/project/issue/showAddIssueForm"
+			access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
+		<intercept-url pattern="/user/list"
+			access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
+		<intercept-url pattern="/project/list"
+			access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
+		<!-- <intercept-url pattern="/**" access="permitAll" /> -->
 		<form-login />
 		<logout />
 		<http-basic />
