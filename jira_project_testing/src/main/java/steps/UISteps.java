@@ -31,7 +31,7 @@ public class UISteps extends Steps {
 		driver.get(url);
 	}
 
-	@Then("$title is displayed")
+	@Then("the page displayed is $title")
 	public void lookingForTheTitle(String title) {
 		assertEquals(title, driver.getTitle());
 	}
