@@ -1,10 +1,11 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
 </head>
 <body>
 	<h3>Welcome, Enter The Project Details</h3>
-	<form:form method="POST" action="/jira_project/project/addProject" modelAttribute="project">
+	<form:form method="POST" action="/jira_project/project/addProject"
+		modelAttribute="project">
 		<table>
 			<tr>
 				<td><label>Description</label></td>
@@ -31,7 +32,7 @@
 				<td><form:input path="url" /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Submit" /></td>
+				<td><input type="submit" value="Add Project" id="addProjectButton" /></td>
 			</tr>
 		</table>
 	</form:form>
