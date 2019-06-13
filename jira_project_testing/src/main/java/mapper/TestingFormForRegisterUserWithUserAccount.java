@@ -12,13 +12,13 @@ import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.CandidateSteps;
 import org.jbehave.core.steps.InstanceStepsFactory;
 
-import steps.AccesingFormForRegisterUserWithAdminAccount;
+import steps.AccesingFormForRegisterUserWithUserAccount;
 
-public class TestingFormForRegisterUserWithAdminAccount extends JUnitStories {
+public class TestingFormForRegisterUserWithUserAccount extends JUnitStories {
 
-	public TestingFormForRegisterUserWithAdminAccount() {
+	public TestingFormForRegisterUserWithUserAccount() {
 		super();
-		this.configuredEmbedder().candidateSteps().add(new AccesingFormForRegisterUserWithAdminAccount());
+		this.configuredEmbedder().candidateSteps().add(new AccesingFormForRegisterUserWithUserAccount());
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class TestingFormForRegisterUserWithAdminAccount extends JUnitStories {
 
 	@Override
 	protected List<String> storyPaths() {
-		return Arrays.asList("stories/AccesingFormForRegisterUserWithAdminAccount.story");
+		return Arrays.asList("stories/AccesingFormForRegisterUserWithUserAccount.story");
 	}
 
 }

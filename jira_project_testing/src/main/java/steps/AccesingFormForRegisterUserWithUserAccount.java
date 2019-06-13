@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class AccesingFormForRegisterUserWithAdminAccount extends Steps {
+public class AccesingFormForRegisterUserWithUserAccount extends Steps {
 
 	private static WebDriver driver = null;
 
@@ -48,9 +48,9 @@ public class AccesingFormForRegisterUserWithAdminAccount extends Steps {
 		driver.findElement(By.className("btn")).click();
 	}
 
-	@Then("displaying the table $table")
-	public void resultingPage(String table) {
-		final WebElement element = driver.findElement(By.id(table));
+	@Then("the page containing the $error is displaying")
+	public void resultingPage(String error) {
+		final WebElement element = driver.findElement(By.id(error));
 		System.out.println(element.getTagName());
 		assertTrue(element.isDisplayed());
 	}

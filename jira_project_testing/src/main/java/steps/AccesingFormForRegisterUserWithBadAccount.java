@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class AccesingFormForRegisterUserWithAdminAccount extends Steps {
+public class AccesingFormForRegisterUserWithBadAccount extends Steps {
 
 	private static WebDriver driver = null;
 
@@ -48,10 +48,9 @@ public class AccesingFormForRegisterUserWithAdminAccount extends Steps {
 		driver.findElement(By.className("btn")).click();
 	}
 
-	@Then("displaying the table $table")
-	public void resultingPage(String table) {
-		final WebElement element = driver.findElement(By.id(table));
-		System.out.println(element.getTagName());
+	@Then("the bad credentials $alert appears")
+	public void resultingPage(String alert) {
+		final WebElement element = driver.findElement(By.className(alert));
 		assertTrue(element.isDisplayed());
 	}
 }
