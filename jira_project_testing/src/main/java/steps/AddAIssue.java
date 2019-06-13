@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class AddAProject extends Steps {
+public class AddAIssue extends Steps {
 
 	private static WebDriver driver = null;
 
@@ -42,21 +42,26 @@ public class AddAProject extends Steps {
 
 	@Given("I enter the details for the issue added")
 	public void enterTheIssueDetails() {
-		driver.findElement(By.id("description")).sendKeys("Internal Project Jira Testing");
-		driver.findElement(By.id("leader")).sendKeys("No one");
+		driver.findElement(By.id("parentId")).sendKeys("");
 		driver.findElement(By.id("projectKey")).sendKeys("BNCH");
-		driver.findElement(By.id("projectName")).sendKeys("Jira");
-		driver.findElement(By.id("projectType")).sendKeys("Testing");
-		driver.findElement(By.id("url")).sendKeys("www.jira_project_testing.com");
+		driver.findElement(By.id("issueNumber")).sendKeys("34");
+		driver.findElement(By.id("projectId")).sendKeys("3");
+		driver.findElement(By.id("reporter")).sendKeys("Edi");
+		driver.findElement(By.id("creator")).sendKeys("George");
+		driver.findElement(By.id("summary")).sendKeys("Testing");
+		driver.findElement(By.id("description")).sendKeys("Jira Project Testing");
+		driver.findElement(By.id("duedate")).sendKeys("14.06.2019");
+		driver.findElement(By.id("timeSpent")).sendKeys("2");
+		driver.findElement(By.id("timeEstimate")).sendKeys("200");
 	}
 
 	@When("I press the $button button")
-	public void pressAddAProjectButon(String button) {
+	public void pressAddAIssueButon(String button) {
 		driver.findElement(By.id(button)).click();
 	}
 
 	@Then("the list $list appears")
-	public void showProjectsAdded(String list) {
+	public void showIssuesAdded(String list) {
 		final WebElement element = driver.findElement(By.id(list));
 		assertTrue(element.isDisplayed());
 	}
