@@ -6,7 +6,7 @@
 <head>
 </head>
 <body>
-	
+		<div id="usersRegistered">
 			<table>
 				<tr>
 					<th>Active</th>
@@ -32,6 +32,6 @@
 				
 				</c:forEach>
 			</table>
-
+	</div>
 </body>
 </html>

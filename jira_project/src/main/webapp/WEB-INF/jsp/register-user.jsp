@@ -5,7 +5,7 @@
 <body>
 	<h3>Welcome, Enter The User Details</h3>
 	<form:form method="POST" action="/jira_project/user/registerUser" modelAttribute="user">
-		<table>
+		<table id="userRegisterFields">
 			<tr>
 				<td><label>Username</label></td>
 				<td><form:input path="userName" /></td>
@@ -35,7 +35,7 @@
 				<td><form:input path="emailAddress" /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Submit" /></td>
+				<td><input type="submit" value="Register User" id="registerUser"/></td>
 			</tr>
 		</table>
 	</form:form>
