@@ -1,5 +1,6 @@
 package com.eduard.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.eduard.entity.dto.UserRequestDTO;
@@ -12,5 +13,9 @@ public interface UserService {
 	String unregisterUser(int id);
 
 	List<UserResponseDTO> getUsers();
+
+	List<UserResponseDTO> getUsersNewerThanADate(Timestamp dateToCompare);
+
+	UserResponseDTO getUserByUsername(String username);
 
 }

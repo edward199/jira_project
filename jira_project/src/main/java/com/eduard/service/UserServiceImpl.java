@@ -55,4 +55,25 @@ public class UserServiceImpl implements UserService {
 		return usersDTO;
 	}
 
+	@Override
+	@Transactional
+	public List<UserResponseDTO> getUsersNewerThanADate(Timestamp dateToCompare) {
+		List<User> users = userRepository.getUsersNewerThanADate(dateToCompare);
+		List<UserResponseDTO> usersDTO = new ArrayList<>();
+		for (User user : users) {
+			usersDTO.add(new DozerBeanMapper().map(user, UserResponseDTO.class));
+		}
+		return usersDTO;
+	}
+
+	@Override
+	@Transactional
+	public UserResponseDTO getUserByUsername(String username) {
+
+		User user = userRepository.getUserByUsername(username);
+
+		return new DozerBeanMapper().map(user, UserResponseDTO.class);
+
+	}
+
 }

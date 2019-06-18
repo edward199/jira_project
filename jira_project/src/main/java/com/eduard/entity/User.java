@@ -58,6 +58,20 @@ public class User {
 	public User() {
 	}
 
+	public User(String userName, int active, Timestamp createdDate, Timestamp updatedDate, String firstName,
+			String lastName, String displayName, String emailAddress, List<ProjectRole> roles) {
+		super();
+		this.userName = userName;
+		this.active = active;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.displayName = displayName;
+		this.emailAddress = emailAddress;
+		this.roles = roles;
+	}
+
 	public int getId() {
 		return id;
 	}

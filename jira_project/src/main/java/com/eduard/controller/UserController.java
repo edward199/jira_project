@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,6 +34,16 @@ public class UserController {
 		model.addAttribute("users", users);
 
 		return "list-users";
+
+	}
+
+	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
+	public String listUserByUsername(ModelMap model, @PathVariable("username") String username) {
+		UserResponseDTO user = userService.getUserByUsername(username);
+
+		model.addAttribute("user", user);
+
+		return "list-user";
 
 	}
 

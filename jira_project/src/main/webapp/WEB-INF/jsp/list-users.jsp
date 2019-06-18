@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 
 <html>
@@ -6,32 +6,32 @@
 <head>
 </head>
 <body>
-		<div id="usersRegistered">
-			<table>
+	<div id="usersRegistered">
+		<table>
+			<tr>
+				<th>Username</th>
+				<th>Active</th>
+				<th>Created Date</th>
+				<th>Updated Date</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Display Name</th>
+				<th>Email</th>
+			</tr>
+			<c:forEach var="tempUser" items="${users}">
 				<tr>
-					<th>Active</th>
-					<th>Created Date</th>
-					<th>Updated Date</th>
-					<th>Username</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-					<th>Display Name</th>
+					<td>${tempUser.userName}</td>
+					<td>${tempUser.active}</td>
+					<td>${tempUser.createdDate}</td>
+					<td>${tempUser.updatedDate}</td>
+					<td>${tempUser.firstName}</td>
+					<td>${tempUser.lastName}</td>
+					<td>${tempUser.displayName}</td>
+					<td>${tempUser.emailAddress}</td>
 				</tr>
-				<c:forEach var="tempUser" items="${users}" >
-					<tr>
-						<td>${tempUser.active}</td>
-						<td>${tempUser.createdDate}</td>
-						<td>${tempUser.updatedDate}</td>
-						<td>${tempUser.userName}</td>
-						<td>${tempUser.firstName}</td>
-						<td>${tempUser.lastName}</td>
-						<td>${tempUser.emailAddress}</td>
-						<td>${tempUser.displayName}</td>
-					</tr>
-				
-				</c:forEach>
-			</table>
+
+			</c:forEach>
+		</table>
 	</div>
 </body>
 </html>

@@ -1,9 +1,11 @@
 package com.eduard.repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -35,6 +37,32 @@ public class UserRepositoryImpl implements UserRepository {
 		List<User> users = em.createQuery("From User").getResultList();
 
 		return users;
+	}
+
+	@Override
+	public List<User> getUsersNewerThanADate(Timestamp dateToCompare) {
+
+		Query qry = em.createQuery("From User u where u.createdDate>=:a");
+
+		qry.setParameter("a", dateToCompare);
+
+		List<User> users = qry.getResultList();
+
+		return users;
+
+	}
+
+	@Override
+	public User getUserByUsername(String username) {
+
+		Query qry = em.createQuery("From User u where u.userName=:a");
+
+		qry.setParameter("a", username);
+
+		User user = (User) qry.getSingleResult();
+
+		return user;
+
 	}
 
 }
