@@ -1,6 +1,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE>
 <html>
 <head>
+<title></title>
 </head>
 <body>
 	<h3>Welcome, Enter The User Details</h3>

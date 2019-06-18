@@ -42,4 +42,14 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectsDTO;
 	}
 
+	@Override
+	@Transactional
+	public ProjectDTO getProjectByProjectKey(String projectKey) {
+
+		Project project = projectRepository.getProjectByProjectKey(projectKey);
+
+		return new DozerBeanMapper().map(project, ProjectDTO.class);
+
+	}
+
 }

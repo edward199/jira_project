@@ -7,10 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.eduard.entity.dto.IssueRequestDTO;
 import com.eduard.entity.dto.IssueResponseDTO;
@@ -27,7 +28,7 @@ public class IssueController {
 		this.issueService = issueService;
 	}
 
-	@RequestMapping(value = "/{projectId}/issueList", method = RequestMethod.GET)
+	@GetMapping(value = "/{projectId}/issueList")
 	public String listIssues(@PathVariable("projectId") int projectId, ModelMap model) {
 
 		List<IssueResponseDTO> issues = issueService.getIssues(projectId);
@@ -38,7 +39,7 @@ public class IssueController {
 
 	}
 
-	@RequestMapping(value = "/showAddIssueForm", method = RequestMethod.GET)
+	@GetMapping(value = "/showAddIssueForm")
 	public String showAddIssueForm(Model model) {
 		IssueRequestDTO issueModel = new IssueRequestDTO();
 
@@ -52,7 +53,7 @@ public class IssueController {
 		return new IssueRequestDTO();
 	}
 
-	@RequestMapping(value = "/addIssue", method = RequestMethod.POST)
+	@PostMapping(value = "/addIssue")
 	public String addIssue(@ModelAttribute("issue") IssueRequestDTO issueRequestDTO, BindingResult result,
 			ModelMap model) {
 		if (result.hasErrors()) {

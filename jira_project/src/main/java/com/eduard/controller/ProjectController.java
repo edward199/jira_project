@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.eduard.entity.dto.ProjectDTO;
 import com.eduard.service.ProjectService;
@@ -25,7 +27,7 @@ public class ProjectController {
 		this.projectService = projectService;
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@GetMapping(value = "/list")
 	public String listProjects(ModelMap model) {
 		List<ProjectDTO> projects = projectService.getProjects();
 
@@ -35,7 +37,18 @@ public class ProjectController {
 
 	}
 
-	@RequestMapping(value = "/showAddProjectForm", method = RequestMethod.GET)
+	@GetMapping(value = "/{projectKey}")
+	public String listProject(ModelMap model, @PathVariable("projectKey") String projectKey) {
+
+		ProjectDTO project = projectService.getProjectByProjectKey(projectKey);
+
+		model.addAttribute("project", project);
+
+		return "list-project";
+
+	}
+
+	@GetMapping(value = "/showAddProjectForm")
 	public String showAddProjectForm(Model model) {
 		ProjectDTO projectModel = new ProjectDTO();
 
@@ -49,7 +62,7 @@ public class ProjectController {
 		return new ProjectDTO();
 	}
 
-	@RequestMapping(value = "/addProject", method = RequestMethod.POST)
+	@PostMapping(value = "/addProject")
 	public String addProject(@ModelAttribute("project") ProjectDTO projectDTO, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {

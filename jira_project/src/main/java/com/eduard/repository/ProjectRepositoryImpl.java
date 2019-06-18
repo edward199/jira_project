@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -27,9 +28,18 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 	@Override
 	public List<Project> getProjects() {
 
-		List<Project> projects = em.createQuery("From Project").getResultList();
+		return em.createQuery("From Project").getResultList();
+	}
 
-		return projects;
+	@Override
+	public Project getProjectByProjectKey(String projectKey) {
+
+		Query qry = em.createQuery("From Project p where p.projectKey=:a");
+
+		qry.setParameter("a", projectKey);
+
+		return (Project) qry.getSingleResult();
+
 	}
 
 }

@@ -7,10 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.eduard.entity.dto.UserRequestDTO;
 import com.eduard.entity.dto.UserResponseDTO;
@@ -27,7 +28,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@GetMapping(value = "/list")
 	public String listUsers(ModelMap model) {
 		List<UserResponseDTO> users = userService.getUsers();
 
@@ -37,7 +38,7 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
+	@GetMapping(value = "/{username}")
 	public String listUserByUsername(ModelMap model, @PathVariable("username") String username) {
 		UserResponseDTO user = userService.getUserByUsername(username);
 
@@ -47,7 +48,7 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value = "/showUserRegisterForm", method = RequestMethod.GET)
+	@GetMapping(value = "/showUserRegisterForm")
 	public String showUserRegisterForm(Model theModel) {
 		UserRequestDTO userModel = new UserRequestDTO();
 
@@ -61,7 +62,7 @@ public class UserController {
 		return new UserRequestDTO();
 	}
 
-	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+	@PostMapping(value = "/registerUser")
 	public String registerUser(@ModelAttribute("user") UserRequestDTO userRequestDTO, BindingResult result,
 			ModelMap model) {
 

@@ -10,4 +10,6 @@ public interface ProjectService {
 
 	List<ProjectDTO> getProjects();
 
+	ProjectDTO getProjectByProjectKey(String projectKey);
+
 }

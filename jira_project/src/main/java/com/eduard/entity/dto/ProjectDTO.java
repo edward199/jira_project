@@ -21,10 +21,6 @@ public class ProjectDTO {
 	private List<Issue> issues = new ArrayList<>();
 	private List<ProjectRole> roles = new ArrayList<>();
 
-	public ProjectDTO() {
-
-	}
-
 	public String getDescription() {
 		return description;
 	}

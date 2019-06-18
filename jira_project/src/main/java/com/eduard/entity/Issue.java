@@ -75,8 +75,35 @@ public class Issue {
 	@JoinColumn(name = "issue_status_id")
 	private IssueStatus issueStatus;
 
+	public Issue() {
+
+	}
+
+	public Issue(int parentId, String projectKey, int issueNumber, int projectId, String reporter, String creator,
+			String summary, String description, Date created, Date updated, Date duedate, int timeEstimate,
+			int timeSpent) {
+		super();
+		this.parentId = parentId;
+		this.projectKey = projectKey;
+		this.issueNumber = issueNumber;
+		this.projectId = projectId;
+		this.reporter = reporter;
+		this.creator = creator;
+		this.summary = summary;
+		this.description = description;
+		this.created = created;
+		this.updated = updated;
+		this.duedate = duedate;
+		this.timeEstimate = timeEstimate;
+		this.timeSpent = timeSpent;
+	}
+
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getParentId() {
@@ -85,14 +112,6 @@ public class Issue {
 
 	public void setParentId(int parentId) {
 		this.parentId = parentId;
-	}
-
-	public void setIssuePriority(IssuePriority issuePriority) {
-		this.issuePriority = issuePriority;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getProjectKey() {
@@ -135,14 +154,6 @@ public class Issue {
 		this.creator = creator;
 	}
 
-	public IssueType getIssueType() {
-		return issueType;
-	}
-
-	public void setIssueType(IssueType issueType) {
-		this.issueType = issueType;
-	}
-
 	public String getSummary() {
 		return summary;
 	}
@@ -157,22 +168,6 @@ public class Issue {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public IssuePriority getIssuePriority() {
-		return issuePriority;
-	}
-
-	public void setPriority(IssuePriority issuePriority) {
-		this.issuePriority = issuePriority;
-	}
-
-	public IssueStatus getIssueStatus() {
-		return issueStatus;
-	}
-
-	public void setIssueStatus(IssueStatus issueStatus) {
-		this.issueStatus = issueStatus;
 	}
 
 	public Date getCreated() {
@@ -213,6 +208,30 @@ public class Issue {
 
 	public void setTimeSpent(int timeSpent) {
 		this.timeSpent = timeSpent;
+	}
+
+	public IssueType getIssueType() {
+		return issueType;
+	}
+
+	public void setIssueType(IssueType issueType) {
+		this.issueType = issueType;
+	}
+
+	public IssuePriority getIssuePriority() {
+		return issuePriority;
+	}
+
+	public void setIssuePriority(IssuePriority issuePriority) {
+		this.issuePriority = issuePriority;
+	}
+
+	public IssueStatus getIssueStatus() {
+		return issueStatus;
+	}
+
+	public void setIssueStatus(IssueStatus issueStatus) {
+		this.issueStatus = issueStatus;
 	}
 
 	@Override

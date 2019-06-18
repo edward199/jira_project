@@ -34,9 +34,8 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public List<User> getUsers() {
-		List<User> users = em.createQuery("From User").getResultList();
+		return em.createQuery("From User").getResultList();
 
-		return users;
 	}
 
 	@Override
@@ -46,9 +45,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 		qry.setParameter("a", dateToCompare);
 
-		List<User> users = qry.getResultList();
-
-		return users;
+		return qry.getResultList();
 
 	}
 
@@ -59,9 +56,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 		qry.setParameter("a", username);
 
-		User user = (User) qry.getSingleResult();
-
-		return user;
+		return (User) qry.getSingleResult();
 
 	}
 

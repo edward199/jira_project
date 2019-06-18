@@ -34,8 +34,7 @@ public class UserServiceImpl implements UserService {
 		user.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
 		user.setUpdatedDate(Timestamp.valueOf(LocalDateTime.now()));
 		userRepository.addUser(user);
-		UserResponseDTO userResponseDTO = new DozerBeanMapper().map(user, UserResponseDTO.class);
-		return userResponseDTO;
+		return new DozerBeanMapper().map(user, UserResponseDTO.class);
 	}
 
 	@Override

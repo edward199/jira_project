@@ -18,10 +18,6 @@ public class UserResponseDTO {
 	private String emailAddress;
 	private List<ProjectRole> roles = new ArrayList<>();
 
-	public UserResponseDTO() {
-
-	}
-
 	public UserResponseDTO(String userName, int active, Timestamp createdDate, Timestamp updatedDate, String firstName,
 			String lastName, String displayName, String emailAddress, List<ProjectRole> roles) {
 		super();

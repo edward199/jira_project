@@ -32,10 +32,7 @@ public class IssueRepositoryImpl implements IssueRepository {
 
 		qry.setParameter("a", projectId);
 
-		List<Issue> issues = qry.getResultList();
-
-		return issues;
-
+		return qry.getResultList();
 	}
 
 }

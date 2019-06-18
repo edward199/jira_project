@@ -19,10 +19,6 @@ public class UserRequestDTO {
 	private String emailAddress;
 	private List<ProjectRole> roles = new ArrayList<>();
 
-	public UserRequestDTO() {
-
-	}
-
 	public String getPassword() {
 		return password;
 	}

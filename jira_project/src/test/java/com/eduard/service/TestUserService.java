@@ -67,12 +67,12 @@ public class TestUserService {
 
 	@Test
 	public void getUserByUsernameTest() {
-		User user = userRepository.getUserByUsername("eduard");
 
-		Mockito.when(userRepository.getUserByUsername("eduard").getUserName()).thenReturn("eduard");
-//		System.out.println(user);
+		User resultUser = Mockito.mock(User.class);
+		Mockito.when(userRepository.getUserByUsername("eduard")).thenReturn(resultUser);
 
-//		assertEquals("eduard", user.getUserName());
-		Mockito.verify(userRepository, Mockito.times(1)).getUserByUsername("eduard");
+		Mockito.when(resultUser.getUserName()).thenReturn("eduard");
+
+		assertEquals("eduard", resultUser.getUserName());
 	}
 }

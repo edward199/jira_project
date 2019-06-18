@@ -10,4 +10,6 @@ public interface ProjectRepository {
 
 	List<Project> getProjects();
 
+	Project getProjectByProjectKey(String projectKey);
+
 }

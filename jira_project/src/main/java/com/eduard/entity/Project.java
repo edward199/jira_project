@@ -59,6 +59,17 @@ public class Project {
 
 	}
 
+	public Project(String description, String leader, String projectKey, String projectName, String projectType,
+			String url) {
+		super();
+		this.description = description;
+		this.leader = leader;
+		this.projectKey = projectKey;
+		this.projectName = projectName;
+		this.projectType = projectType;
+		this.url = url;
+	}
+
 	public int getId() {
 		return id;
 	}
