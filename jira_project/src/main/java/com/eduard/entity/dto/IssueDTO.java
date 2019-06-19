@@ -2,6 +2,11 @@ package com.eduard.entity.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.eduard.entity.IssuePriority;
@@ -10,20 +15,47 @@ import com.eduard.entity.IssueType;
 
 public class IssueDTO {
 	private int parentId;
+
+	@NotBlank(message = "Project key can't be null")
+	@Size(min = 2, message = "Project key must have at least 2 characters")
 	private String projectKey;
+
+	@NotNull(message = "Issue number can't be null")
+	@Min(value = 1, message = "Issue number must have at least 2 characters")
 	private int issueNumber;
+
+	@NotNull(message = "Project id can't be null")
+	@Min(value = 1, message = "Project id must have at least 1 character")
 	private int projectId;
+
+	@NotBlank(message = "Reporter can't be null")
+	@Size(min = 3, message = "Reporter must have at least 3 characters")
 	private String reporter;
+
+	@NotBlank(message = "Reporter can't be null")
+	@Size(min = 3, message = "Reporter must have at least 3 characters")
 	private String creator;
+
+	@NotBlank(message = "Summary can't be null")
+	@Size(min = 6, message = "Summary must have at least 6 characters")
 	private String summary;
+
+	@NotBlank(message = "Description can't be null")
+	@Size(min = 10, message = "Description must have at least 10 characters")
 	private String description;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private Date created;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private Date updated;
+
+	@NotNull(message = "Date can't be null")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private Date duedate;
+
+	@NotNull(message = "Time estimate can't be null")
 	private int timeEstimate;
+
+	@NotNull(message = "Time spent can't be null")
 	private int timeSpent;
 	private IssueType issueType;
 	private IssuePriority issuePriority;

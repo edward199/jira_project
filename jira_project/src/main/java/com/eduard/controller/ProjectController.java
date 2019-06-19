@@ -2,6 +2,8 @@ package com.eduard.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,10 +65,11 @@ public class ProjectController {
 	}
 
 	@PostMapping(value = "/addProject")
-	public String addProject(@ModelAttribute("project") ProjectDTO projectDTO, BindingResult result, ModelMap model) {
+	public String addProject(@ModelAttribute("project") @Valid ProjectDTO projectDTO, BindingResult result,
+			ModelMap model) {
 
 		if (result.hasErrors()) {
-			return "error";
+			return "add-project";
 		}
 		model.addAttribute("description", projectDTO.getDescription());
 		model.addAttribute("leader", projectDTO.getLeader());

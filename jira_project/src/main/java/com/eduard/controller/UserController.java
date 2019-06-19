@@ -2,6 +2,8 @@ package com.eduard.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,11 +65,11 @@ public class UserController {
 	}
 
 	@PostMapping(value = "/registerUser")
-	public String registerUser(@ModelAttribute("user") UserRequestDTO userRequestDTO, BindingResult result,
+	public String registerUser(@ModelAttribute("user") @Valid UserRequestDTO userRequestDTO, BindingResult result,
 			ModelMap model) {
 
 		if (result.hasErrors()) {
-			return "error";
+			return "register-user";
 		}
 		model.addAttribute("userName", userRequestDTO.getUserName());
 		model.addAttribute("password", userRequestDTO.getPassword());

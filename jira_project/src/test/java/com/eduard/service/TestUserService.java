@@ -64,12 +64,14 @@ public class TestUserService {
 		Mockito.when(userRepository.getUsersNewerThanADate(Timestamp.valueOf("2019-06-06 13:48:23.0")))
 				.thenReturn(users);
 		assertEquals(1, users.size());
+		assertEquals("asdfsa", users.get(0).getUserName());
 	}
 
 	@Test
 	public void getUserByUsernameTest() {
 
 		User resultUser = Mockito.mock(User.class);
+
 		Mockito.when(userRepository.getUserByUsername("eduard")).thenReturn(resultUser);
 
 		Mockito.when(resultUser.getUserName()).thenReturn("eduard");

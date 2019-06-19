@@ -4,10 +4,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import com.eduard.entity.ProjectRole;
 
 public class UserResponseDTO {
 
+	@NotNull
 	private String userName;
 	private int active;
 	private Timestamp createdDate;
@@ -17,6 +20,10 @@ public class UserResponseDTO {
 	private String displayName;
 	private String emailAddress;
 	private List<ProjectRole> roles = new ArrayList<>();
+
+	public UserResponseDTO() {
+
+	}
 
 	public UserResponseDTO(String userName, int active, Timestamp createdDate, Timestamp updatedDate, String firstName,
 			String lastName, String displayName, String emailAddress, List<ProjectRole> roles) {

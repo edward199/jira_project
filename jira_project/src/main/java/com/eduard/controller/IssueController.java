@@ -2,6 +2,8 @@ package com.eduard.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,9 +55,9 @@ public class IssueController {
 	}
 
 	@PostMapping(value = "/addIssue")
-	public String addIssue(@ModelAttribute("issue") IssueDTO issueDTO, BindingResult result, ModelMap model) {
+	public String addIssue(@ModelAttribute("issue") @Valid IssueDTO issueDTO, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
-			return "error";
+			return "add-issue";
 		}
 
 		model.addAttribute("parentId", issueDTO.getParentId());

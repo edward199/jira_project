@@ -5,17 +5,39 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.URL;
+
 import com.eduard.entity.Issue;
 import com.eduard.entity.ProjectRole;
 import com.eduard.entity.ProjectVersion;
 
 public class ProjectDTO {
 
+	@NotBlank(message = "Description can't be null")
+	@Size(min = 20, message = "Description must have at least 20 characters")
 	private String description;
+
+	@NotBlank(message = "Leader can't be null")
+	@Size(min = 3, message = "Leader must have at least 3 characters")
 	private String leader;
+
+	@NotBlank(message = "Project key can't be null")
+	@Size(min = 2, message = "Project key must have at least 2 characters")
 	private String projectKey;
+
+	@NotBlank(message = "Project name can't be null")
+	@Size(min = 5, message = "Project key name have at least 5 characters")
 	private String projectName;
+
+	@NotBlank(message = "Project type can't be null")
+	@Size(min = 5, message = "Project type name have at least 5 characters")
 	private String projectType;
+
+	@NotBlank(message = "Url can't be null")
+	@URL(message = "Enter a valid url")
 	private String url;
 	private Set<ProjectVersion> versions = new HashSet<>();
 	private List<Issue> issues = new ArrayList<>();

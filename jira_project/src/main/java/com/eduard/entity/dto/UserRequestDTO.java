@@ -4,18 +4,31 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.eduard.entity.ProjectRole;
 
 public class UserRequestDTO {
 
+	@NotBlank(message = "User name can not be null")
 	private String userName;
 	private String password;
 	private int active;
 	private Timestamp createdDate;
 	private Timestamp updatedDate;
+	@NotBlank(message = "First name can not be null")
+	@Size(min = 3, message = "First name has to have at least 3 characters")
 	private String firstName;
+	@NotBlank(message = "Last name can not be null")
+	@Size(min = 4, message = "Last name has to have at least 4 characters")
 	private String lastName;
+	@NotBlank(message = "Display name can not be null")
+	@Size(min = 6, message = "Display name has to have at least 6 characters")
 	private String displayName;
+	@NotBlank(message = "Email address can not be null")
+	@Email(message = "Enter a valid email adress")
 	private String emailAddress;
 	private List<ProjectRole> roles = new ArrayList<>();
 
