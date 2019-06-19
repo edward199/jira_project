@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.eduard.entity.dto.IssueRequestDTO;
-import com.eduard.entity.dto.IssueResponseDTO;
+import com.eduard.entity.dto.IssueDTO;
 import com.eduard.service.IssueService;
 
 @Controller
@@ -31,7 +30,7 @@ public class IssueController {
 	@GetMapping(value = "/{projectId}/issueList")
 	public String listIssues(@PathVariable("projectId") int projectId, ModelMap model) {
 
-		List<IssueResponseDTO> issues = issueService.getIssues(projectId);
+		List<IssueDTO> issues = issueService.getIssues(projectId);
 
 		model.addAttribute("issues", issues);
 
@@ -41,7 +40,7 @@ public class IssueController {
 
 	@GetMapping(value = "/showAddIssueForm")
 	public String showAddIssueForm(Model model) {
-		IssueRequestDTO issueModel = new IssueRequestDTO();
+		IssueDTO issueModel = new IssueDTO();
 
 		model.addAttribute("issue", issueModel);
 
@@ -49,29 +48,28 @@ public class IssueController {
 	}
 
 	@ModelAttribute("issue")
-	public IssueRequestDTO createIssueDTO() {
-		return new IssueRequestDTO();
+	public IssueDTO createIssueDTO() {
+		return new IssueDTO();
 	}
 
 	@PostMapping(value = "/addIssue")
-	public String addIssue(@ModelAttribute("issue") IssueRequestDTO issueRequestDTO, BindingResult result,
-			ModelMap model) {
+	public String addIssue(@ModelAttribute("issue") IssueDTO issueDTO, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
 			return "error";
 		}
 
-		model.addAttribute("parentId", issueRequestDTO.getParentId());
-		model.addAttribute("projectKey", issueRequestDTO.getProjectKey());
-		model.addAttribute("issueNumber", issueRequestDTO.getIssueNumber());
-		model.addAttribute("projectId", issueRequestDTO.getProjectId());
-		model.addAttribute("reporter", issueRequestDTO.getReporter());
-		model.addAttribute("creator", issueRequestDTO.getCreator());
-		model.addAttribute("summary", issueRequestDTO.getSummary());
-		model.addAttribute("description", issueRequestDTO.getDescription());
-		model.addAttribute("duedate", issueRequestDTO.getDuedate());
-		model.addAttribute("timeEstimate", issueRequestDTO.getTimeEstimate());
-		model.addAttribute("timeSpent", issueRequestDTO.getTimeSpent());
-		issueService.addIssue(issueRequestDTO);
+		model.addAttribute("parentId", issueDTO.getParentId());
+		model.addAttribute("projectKey", issueDTO.getProjectKey());
+		model.addAttribute("issueNumber", issueDTO.getIssueNumber());
+		model.addAttribute("projectId", issueDTO.getProjectId());
+		model.addAttribute("reporter", issueDTO.getReporter());
+		model.addAttribute("creator", issueDTO.getCreator());
+		model.addAttribute("summary", issueDTO.getSummary());
+		model.addAttribute("description", issueDTO.getDescription());
+		model.addAttribute("duedate", issueDTO.getDuedate());
+		model.addAttribute("timeEstimate", issueDTO.getTimeEstimate());
+		model.addAttribute("timeSpent", issueDTO.getTimeSpent());
+		issueService.addIssue(issueDTO);
 		return "redirect:/project/issue/{projectId}/issueList";
 	}
 }

@@ -1,7 +1,8 @@
 <!DOCTYPE>
-<title></title>
+
 <html>
     <head>
+    <title></title>
     </head>
  
     <body>

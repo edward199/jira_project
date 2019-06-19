@@ -8,7 +8,7 @@ import com.eduard.entity.IssuePriority;
 import com.eduard.entity.IssueStatus;
 import com.eduard.entity.IssueType;
 
-public class IssueResponseDTO {
+public class IssueDTO {
 	private int parentId;
 	private String projectKey;
 	private int issueNumber;
@@ -159,7 +159,7 @@ public class IssueResponseDTO {
 
 	@Override
 	public String toString() {
-		return "IssueResponseDTO [parentId=" + parentId + ", projectKey=" + projectKey + ", issueNumber=" + issueNumber
+		return "IssueRequestDTO [parentId=" + parentId + ", projectKey=" + projectKey + ", issueNumber=" + issueNumber
 				+ ", projectId=" + projectId + ", reporter=" + reporter + ", creator=" + creator + ", summary="
 				+ summary + ", description=" + description + ", created=" + created + ", updated=" + updated
 				+ ", duedate=" + duedate + ", timeEstimate=" + timeEstimate + ", timeSpent=" + timeSpent

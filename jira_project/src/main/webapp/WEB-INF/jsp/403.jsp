@@ -1,6 +1,8 @@
 <!DOCTYPE>
-<title></title>
 <html>
+<head>
+<title></title>
+</head>
 <body>
 	<h1>HTTP Status 403 - Access is denied</h1>
 	<div id="error403">

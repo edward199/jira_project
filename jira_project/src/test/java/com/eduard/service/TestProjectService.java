@@ -38,6 +38,8 @@ public class TestProjectService {
 
 		Mockito.when(projectRepository.getProjects()).thenReturn(projects);
 
+		assertEquals(2, projects.size());
+
 	}
 
 	@Test

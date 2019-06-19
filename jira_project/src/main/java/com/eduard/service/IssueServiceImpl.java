@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eduard.entity.Issue;
-import com.eduard.entity.dto.IssueRequestDTO;
-import com.eduard.entity.dto.IssueResponseDTO;
+import com.eduard.entity.dto.IssueDTO;
 import com.eduard.repository.IssueRepository;
 
 @Service
@@ -27,24 +26,24 @@ public class IssueServiceImpl implements IssueService {
 
 	@Transactional
 	@Override
-	public IssueResponseDTO addIssue(IssueRequestDTO issueDTO) {
+	public IssueDTO addIssue(IssueDTO issueDTO) {
 
 		Issue issue = new DozerBeanMapper().map(issueDTO, Issue.class);
 		issue.setCreated(Timestamp.valueOf(LocalDateTime.now()));
 		issue.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
 		issueRepository.addIssue(issue);
-		return new DozerBeanMapper().map(issue, IssueResponseDTO.class);
+		return new DozerBeanMapper().map(issue, IssueDTO.class);
 
 	}
 
 	@Transactional
 	@Override
-	public List<IssueResponseDTO> getIssues(int projectId) {
+	public List<IssueDTO> getIssues(int projectId) {
 
 		List<Issue> issues = issueRepository.getIssues(projectId);
-		List<IssueResponseDTO> issuesDTO = new ArrayList<>();
+		List<IssueDTO> issuesDTO = new ArrayList<>();
 		for (Issue issue : issues) {
-			issuesDTO.add(new DozerBeanMapper().map(issue, IssueResponseDTO.class));
+			issuesDTO.add(new DozerBeanMapper().map(issue, IssueDTO.class));
 		}
 		return issuesDTO;
 

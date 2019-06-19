@@ -2,13 +2,12 @@ package com.eduard.service;
 
 import java.util.List;
 
-import com.eduard.entity.dto.IssueRequestDTO;
-import com.eduard.entity.dto.IssueResponseDTO;
+import com.eduard.entity.dto.IssueDTO;
 
 public interface IssueService {
 
-	IssueResponseDTO addIssue(IssueRequestDTO issueDTO);
+	IssueDTO addIssue(IssueDTO issueDTO);
 
-	List<IssueResponseDTO> getIssues(int projectId);
+	List<IssueDTO> getIssues(int projectId);
 
 }

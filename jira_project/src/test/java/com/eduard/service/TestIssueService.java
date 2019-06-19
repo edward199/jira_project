@@ -37,9 +37,9 @@ public class TestIssueService {
 
 		Mockito.when(issueRepository.getIssues(3)).thenReturn(issues);
 
-		Issue resultIssue = (Issue) issueRepository.getIssues(3);
+		Issue resultIssue = issueRepository.getIssues(3).get(0);
 
-		Mockito.when(resultIssue.getProjectKey()).thenReturn("BCHM");
+		// Mockito.when(resultIssue.getProjectKey()).thenReturn("BCHM");
 
 		assertEquals("BCHM", resultIssue.getProjectKey());
 	}
