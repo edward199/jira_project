@@ -10,4 +10,5 @@ public interface IssueRepository {
 
 	List<Issue> getIssues(int projectId);
 
+	List<Issue> getCreatedDates();
 }

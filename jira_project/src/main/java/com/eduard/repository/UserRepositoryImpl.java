@@ -3,6 +3,7 @@ package com.eduard.repository;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -18,7 +19,7 @@ public class UserRepositoryImpl implements UserRepository {
 	private EntityManager em;
 
 	@Override
-	public User addUser(User user) {
+	public User addUser(User user) throws EntityExistsException {
 		em.persist(user);
 		em.flush();
 		return user;

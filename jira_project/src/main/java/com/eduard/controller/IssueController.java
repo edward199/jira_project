@@ -1,6 +1,9 @@
 package com.eduard.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 import javax.validation.Valid;
 
@@ -73,5 +76,12 @@ public class IssueController {
 		model.addAttribute("timeSpent", issueDTO.getTimeSpent());
 		issueService.addIssue(issueDTO);
 		return "redirect:/project/issue/{projectId}/issueList";
+	}
+
+	@GetMapping(value = "/createdDays")
+	public String createdDays() {
+		TreeMap<String, Map<Integer, Integer>> issues = issueService.getCreatedDates();
+		Set<Integer> issuesToShow = issueService.topNDays(issues, 6, "2019-06-12");
+		return "created-days";
 	}
 }

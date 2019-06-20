@@ -54,6 +54,16 @@
 				<td><form:errors path="description" cssClass="error" /></td>
 			</tr>
 			<tr>
+				<td><label>Created</label>
+				<td><form:input path="created" type="date" /></td>
+				<td><form:errors path="created" cssClass="error" /></td>
+			</tr>
+			<tr>
+				<td><label>Updated</label>
+				<td><form:input path="updated" type="date" /></td>
+				<td><form:errors path="updated" cssClass="error" /></td>
+			</tr>
+			<tr>
 				<td><label>Duedate</label>
 				<td><form:input path="duedate" type="date" /></td>
 				<td><form:errors path="duedate" cssClass="error" /></td>

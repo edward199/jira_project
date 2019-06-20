@@ -21,19 +21,19 @@ public class IssueDTO {
 	private String projectKey;
 
 	@NotNull(message = "Issue number can't be null")
-	@Min(value = 1, message = "Issue number must have at least 2 characters")
+	@Min(value = 1, message = "Issue number can't be 0")
 	private int issueNumber;
 
 	@NotNull(message = "Project id can't be null")
-	@Min(value = 1, message = "Project id must have at least 1 character")
+	@Min(value = 1, message = "Project id can't be 0")
 	private int projectId;
 
 	@NotBlank(message = "Reporter can't be null")
 	@Size(min = 3, message = "Reporter must have at least 3 characters")
 	private String reporter;
 
-	@NotBlank(message = "Reporter can't be null")
-	@Size(min = 3, message = "Reporter must have at least 3 characters")
+	@NotBlank(message = "Creator can't be null")
+	@Size(min = 3, message = "Creator must have at least 3 characters")
 	private String creator;
 
 	@NotBlank(message = "Summary can't be null")
@@ -53,9 +53,11 @@ public class IssueDTO {
 	private Date duedate;
 
 	@NotNull(message = "Time estimate can't be null")
+	@Min(value = 1, message = "Time estimate can't be 0")
 	private int timeEstimate;
 
 	@NotNull(message = "Time spent can't be null")
+	@Min(value = 1, message = "Time spent can't be 0")
 	private int timeSpent;
 	private IssueType issueType;
 	private IssuePriority issuePriority;

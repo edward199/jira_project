@@ -35,4 +35,15 @@ public class IssueRepositoryImpl implements IssueRepository {
 		return qry.getResultList();
 	}
 
+	@Override
+	public List<Issue> getCreatedDates() {
+
+		Query qry = em.createQuery("from Issue i");
+
+		List<Issue> issues = qry.getResultList();
+
+		return issues;
+
+	}
+
 }
