@@ -55,9 +55,9 @@ public class IssueServiceImpl implements IssueService {
 
 	@Transactional
 	@Override
-	public TreeMap<String, Map<Integer, Integer>> getCreatedDates() {
+	public TreeMap<String, Map<Integer, Integer>> getAllIssuesInATreeMap() {
 
-		List<Issue> issues = issueRepository.getCreatedDates();
+		List<Issue> issues = issueRepository.getAllIssues();
 
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -79,6 +79,7 @@ public class IssueServiceImpl implements IssueService {
 
 	}
 
+	@Override
 	public Set<Integer> topNDays(TreeMap<String, Map<Integer, Integer>> datesMap, int n, String date) {
 
 		int leftValue = 0;
@@ -143,6 +144,18 @@ public class IssueServiceImpl implements IssueService {
 			e.printStackTrace();
 		}
 		return days;
+	}
+
+	@Transactional
+	@Override
+	public List<IssueDTO> getIssuesToShow(Set<Integer> issuesToShow) {
+
+		List<Issue> issues = issueRepository.getIssuesToShow(issuesToShow);
+		List<IssueDTO> issuesDTO = new ArrayList<>();
+		for (Issue issue : issues) {
+			issuesDTO.add(new DozerBeanMapper().map(issue, IssueDTO.class));
+		}
+		return issuesDTO;
 	}
 
 }

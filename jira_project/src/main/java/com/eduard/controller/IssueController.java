@@ -78,10 +78,12 @@ public class IssueController {
 		return "redirect:/project/issue/{projectId}/issueList";
 	}
 
-	@GetMapping(value = "/createdDays")
-	public String createdDays() {
-		TreeMap<String, Map<Integer, Integer>> issues = issueService.getCreatedDates();
-		Set<Integer> issuesToShow = issueService.topNDays(issues, 6, "2019-06-12");
-		return "created-days";
+	@GetMapping(value = "/{n}/{date}")
+	public String createdDays(@PathVariable("n") int n, @PathVariable("date") String date, ModelMap model) {
+		TreeMap<String, Map<Integer, Integer>> issues = issueService.getAllIssuesInATreeMap();
+		Set<Integer> IdsForIssuesToShow = issueService.topNDays(issues, n, date);
+		List<IssueDTO> issuesDate = issueService.getIssuesToShow(IdsForIssuesToShow);
+		model.addAttribute("issuesDate", issuesDate);
+		return "list-issues-specificdate";
 	}
 }

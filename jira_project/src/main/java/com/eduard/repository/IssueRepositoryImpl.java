@@ -1,6 +1,8 @@
 package com.eduard.repository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,11 +38,27 @@ public class IssueRepositoryImpl implements IssueRepository {
 	}
 
 	@Override
-	public List<Issue> getCreatedDates() {
+	public List<Issue> getAllIssues() {
 
 		Query qry = em.createQuery("from Issue i");
 
 		List<Issue> issues = qry.getResultList();
+
+		return issues;
+
+	}
+
+	@Override
+	public List<Issue> getIssuesToShow(Set<Integer> issuesToShow) {
+
+		List<Issue> issues = new ArrayList<>();
+
+		Query qry = em.createQuery("from Issue i where i.id=:a");
+
+		for (Integer i : issuesToShow) {
+			qry.setParameter("a", i);
+			issues.add((Issue) qry.getSingleResult());
+		}
 
 		return issues;
 
