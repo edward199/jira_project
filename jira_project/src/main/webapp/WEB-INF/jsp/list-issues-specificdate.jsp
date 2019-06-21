@@ -10,6 +10,7 @@
 	<div id="listIssuesToShow">
 		<table>
 			<tr>
+				<th>Id</th>
 				<th>Parent Id</th>
 				<th>Project Key</th>
 				<th>Issue Number</th>
@@ -26,6 +27,7 @@
 			</tr>
 			<c:forEach var="tempIssueDate" items="${issuesDate}">
 				<tr>
+					<td>${tempIssueDate.id}</td>
 					<td>${tempIssueDate.parentId}</td>
 					<td>${tempIssueDate.projectKey}</td>
 					<td>${tempIssueDate.issueNumber}</td>

@@ -117,7 +117,7 @@ public class ProjectDTO {
 
 	@Override
 	public String toString() {
-		return "ProjectRequestDTO [description=" + description + ", leader=" + leader + ", projectKey=" + projectKey
+		return "ProjectDTO [description=" + description + ", leader=" + leader + ", projectKey=" + projectKey
 				+ ", projectName=" + projectName + ", projectType=" + projectType + ", url=" + url + ", versions="
 				+ versions + ", issues=" + issues + ", roles=" + roles + "]";
 	}

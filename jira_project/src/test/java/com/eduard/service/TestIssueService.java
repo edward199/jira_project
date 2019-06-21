@@ -30,7 +30,7 @@ public class TestIssueService {
 
 		List<Issue> issues = new ArrayList<>();
 
-		Issue issue = new Issue(2, "BCHM", 23, 3, "Edi", "George", "Spring MVC", "Model-View-Controller",
+		Issue issue = new Issue(3, 2, "BCHM", 23, 3, "Edi", "George", "Spring MVC", "Model-View-Controller",
 				Date.valueOf("2019-06-11"), Date.valueOf("2019-06-11"), Date.valueOf("2019-06-12"), 200, 2);
 
 		issues.add(issue);

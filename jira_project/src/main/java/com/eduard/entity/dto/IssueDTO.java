@@ -14,6 +14,8 @@ import com.eduard.entity.IssueStatus;
 import com.eduard.entity.IssueType;
 
 public class IssueDTO {
+	private int id;
+
 	private int parentId;
 
 	@NotBlank(message = "Project key can't be null")
@@ -62,6 +64,37 @@ public class IssueDTO {
 	private IssueType issueType;
 	private IssuePriority issuePriority;
 	private IssueStatus issueStatus;
+
+	public IssueDTO() {
+
+	}
+
+	public IssueDTO(int id, int parentId, String projectKey, int issueNumber, int projectId, String reporter,
+			String creator, String summary, String description, Date created, Date updated, Date duedate,
+			int timeEstimate, int timeSpent) {
+		this.id = id;
+		this.parentId = parentId;
+		this.projectKey = projectKey;
+		this.issueNumber = issueNumber;
+		this.projectId = projectId;
+		this.reporter = reporter;
+		this.creator = creator;
+		this.summary = summary;
+		this.description = description;
+		this.created = created;
+		this.updated = updated;
+		this.duedate = duedate;
+		this.timeEstimate = timeEstimate;
+		this.timeSpent = timeSpent;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getParentId() {
 		return parentId;
@@ -193,12 +226,112 @@ public class IssueDTO {
 
 	@Override
 	public String toString() {
-		return "IssueRequestDTO [parentId=" + parentId + ", projectKey=" + projectKey + ", issueNumber=" + issueNumber
-				+ ", projectId=" + projectId + ", reporter=" + reporter + ", creator=" + creator + ", summary="
-				+ summary + ", description=" + description + ", created=" + created + ", updated=" + updated
-				+ ", duedate=" + duedate + ", timeEstimate=" + timeEstimate + ", timeSpent=" + timeSpent
+		return "IssueDTO [id=" + id + ", parentId=" + parentId + ", projectKey=" + projectKey + ", issueNumber="
+				+ issueNumber + ", projectId=" + projectId + ", reporter=" + reporter + ", creator=" + creator
+				+ ", summary=" + summary + ", description=" + description + ", created=" + created + ", updated="
+				+ updated + ", duedate=" + duedate + ", timeEstimate=" + timeEstimate + ", timeSpent=" + timeSpent
 				+ ", issueType=" + issueType + ", issuePriority=" + issuePriority + ", issueStatus=" + issueStatus
 				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((created == null) ? 0 : created.hashCode());
+		result = prime * result + ((creator == null) ? 0 : creator.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((duedate == null) ? 0 : duedate.hashCode());
+		result = prime * result + issueNumber;
+		result = prime * result + ((issuePriority == null) ? 0 : issuePriority.hashCode());
+		result = prime * result + ((issueStatus == null) ? 0 : issueStatus.hashCode());
+		result = prime * result + ((issueType == null) ? 0 : issueType.hashCode());
+		result = prime * result + parentId;
+		result = prime * result + projectId;
+		result = prime * result + ((projectKey == null) ? 0 : projectKey.hashCode());
+		result = prime * result + ((reporter == null) ? 0 : reporter.hashCode());
+		result = prime * result + ((summary == null) ? 0 : summary.hashCode());
+		result = prime * result + timeEstimate;
+		result = prime * result + timeSpent;
+		result = prime * result + ((updated == null) ? 0 : updated.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		IssueDTO other = (IssueDTO) obj;
+		if (created == null) {
+			if (other.created != null)
+				return false;
+		} else if (!created.equals(other.created))
+			return false;
+		if (creator == null) {
+			if (other.creator != null)
+				return false;
+		} else if (!creator.equals(other.creator))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (duedate == null) {
+			if (other.duedate != null)
+				return false;
+		} else if (!duedate.equals(other.duedate))
+			return false;
+		if (issueNumber != other.issueNumber)
+			return false;
+		if (issuePriority == null) {
+			if (other.issuePriority != null)
+				return false;
+		} else if (!issuePriority.equals(other.issuePriority))
+			return false;
+		if (issueStatus == null) {
+			if (other.issueStatus != null)
+				return false;
+		} else if (!issueStatus.equals(other.issueStatus))
+			return false;
+		if (issueType == null) {
+			if (other.issueType != null)
+				return false;
+		} else if (!issueType.equals(other.issueType))
+			return false;
+		if (parentId != other.parentId)
+			return false;
+		if (projectId != other.projectId)
+			return false;
+		if (projectKey == null) {
+			if (other.projectKey != null)
+				return false;
+		} else if (!projectKey.equals(other.projectKey))
+			return false;
+		if (reporter == null) {
+			if (other.reporter != null)
+				return false;
+		} else if (!reporter.equals(other.reporter))
+			return false;
+		if (summary == null) {
+			if (other.summary != null)
+				return false;
+		} else if (!summary.equals(other.summary))
+			return false;
+		if (timeEstimate != other.timeEstimate)
+			return false;
+		if (timeSpent != other.timeSpent)
+			return false;
+		if (updated == null) {
+			if (other.updated != null)
+				return false;
+		} else if (!updated.equals(other.updated))
+			return false;
+		return true;
 	}
 
 }

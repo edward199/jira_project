@@ -79,10 +79,10 @@ public class Issue {
 
 	}
 
-	public Issue(int parentId, String projectKey, int issueNumber, int projectId, String reporter, String creator,
-			String summary, String description, Date created, Date updated, Date duedate, int timeEstimate,
-			int timeSpent) {
-		super();
+	public Issue(int id, int parentId, String projectKey, int issueNumber, int projectId, String reporter,
+			String creator, String summary, String description, Date created, Date updated, Date duedate,
+			int timeEstimate, int timeSpent) {
+		this.id = id;
 		this.parentId = parentId;
 		this.projectKey = projectKey;
 		this.issueNumber = issueNumber;

@@ -1,9 +1,6 @@
 package com.eduard.controller;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 
 import javax.validation.Valid;
 
@@ -79,10 +76,8 @@ public class IssueController {
 	}
 
 	@GetMapping(value = "/{n}/{date}")
-	public String createdDays(@PathVariable("n") int n, @PathVariable("date") String date, ModelMap model) {
-		TreeMap<String, Map<Integer, Integer>> issues = issueService.getAllIssuesInATreeMap();
-		Set<Integer> IdsForIssuesToShow = issueService.topNDays(issues, n, date);
-		List<IssueDTO> issuesDate = issueService.getIssuesToShow(IdsForIssuesToShow);
+	public String showIssuesAroundADate(@PathVariable("n") int n, @PathVariable("date") String date, ModelMap model) {
+		List<IssueDTO> issuesDate = issueService.showIssuesAroundADate(n, date);
 		model.addAttribute("issuesDate", issuesDate);
 		return "list-issues-specificdate";
 	}

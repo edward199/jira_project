@@ -55,7 +55,7 @@ public class IssueServiceImpl implements IssueService {
 
 	@Transactional
 	@Override
-	public TreeMap<String, Map<Integer, Integer>> getAllIssuesInATreeMap() {
+	public List<IssueDTO> showIssuesAroundADate(int n, String date) {
 
 		List<Issue> issues = issueRepository.getAllIssues();
 
@@ -75,8 +75,17 @@ public class IssueServiceImpl implements IssueService {
 				datesMap.put(datee, ids);
 			}
 		}
-		return datesMap;
-
+		Set<Integer> issuesToShow = topNDays(datesMap, n, date);
+		List<IssueDTO> issuesDTO = new ArrayList<>();
+		for (Integer i : issuesToShow) {
+			for (Issue issue : issues) {
+				if (i == issue.getId()) {
+					issuesDTO.add(new DozerBeanMapper().map(issue, IssueDTO.class));
+					break;
+				}
+			}
+		}
+		return issuesDTO;
 	}
 
 	@Override
@@ -144,18 +153,6 @@ public class IssueServiceImpl implements IssueService {
 			e.printStackTrace();
 		}
 		return days;
-	}
-
-	@Transactional
-	@Override
-	public List<IssueDTO> getIssuesToShow(Set<Integer> issuesToShow) {
-
-		List<Issue> issues = issueRepository.getIssuesToShow(issuesToShow);
-		List<IssueDTO> issuesDTO = new ArrayList<>();
-		for (Issue issue : issues) {
-			issuesDTO.add(new DozerBeanMapper().map(issue, IssueDTO.class));
-		}
-		return issuesDTO;
 	}
 
 }
