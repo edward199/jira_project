@@ -4,13 +4,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 import com.eduard.entity.ProjectRole;
 
 public class UserResponseDTO {
 
-	@NotNull
 	private String userName;
 	private int active;
 	private Timestamp createdDate;

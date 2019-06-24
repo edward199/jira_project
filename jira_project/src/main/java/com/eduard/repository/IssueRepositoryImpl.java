@@ -40,9 +40,7 @@ public class IssueRepositoryImpl implements IssueRepository {
 
 		Query qry = em.createQuery("from Issue i");
 
-		List<Issue> issues = qry.getResultList();
-
-		return issues;
+		return qry.getResultList();
 
 	}
 }

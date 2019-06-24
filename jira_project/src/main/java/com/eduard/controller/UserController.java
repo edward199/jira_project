@@ -2,7 +2,6 @@ package com.eduard.controller;
 
 import java.util.List;
 
-import javax.persistence.PersistenceException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +66,7 @@ public class UserController {
 
 	@PostMapping(value = "/registerUser")
 	public String registerUser(@ModelAttribute("user") @Valid UserRequestDTO userRequestDTO, BindingResult result,
-			ModelMap model) throws PersistenceException {
+			ModelMap model) {
 
 		if (result.hasErrors()) {
 			return "register-user";
@@ -79,11 +78,7 @@ public class UserController {
 		model.addAttribute("lastName", userRequestDTO.getLastName());
 		model.addAttribute("displayName", userRequestDTO.getDisplayName());
 		model.addAttribute("emailAddress", userRequestDTO.getEmailAddress());
-		try {
-			userService.registerUser(userRequestDTO);
-		} catch (PersistenceException ex) {
-			throw ex;
-		}
+		userService.registerUser(userRequestDTO);
 		return "redirect:/user/list";
 	}
 }
