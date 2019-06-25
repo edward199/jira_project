@@ -17,4 +17,6 @@ public interface IssueService {
 
 	public Set<Integer> topNDays(TreeMap<String, Map<Integer, Integer>> datesMap, int n, String date);
 
+	public List<Integer> searchInIssues(String search, int n);
+
 }

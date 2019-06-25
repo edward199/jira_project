@@ -81,4 +81,11 @@ public class IssueController {
 		model.addAttribute("issuesDate", issuesDate);
 		return "list-issues-specificdate";
 	}
+
+	@GetMapping(value = "/search/{search}/{n}")
+	public String searchThroughIssues(@PathVariable("n") int n, @PathVariable("search") String search, ModelMap model) {
+		List<Integer> issuesSearched = issueService.searchInIssues(search, n);
+		model.addAttribute("issuesSearched", issuesSearched);
+		return "list-issues-searched";
+	}
 }

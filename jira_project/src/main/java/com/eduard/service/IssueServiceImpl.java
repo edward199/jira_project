@@ -3,6 +3,7 @@ package com.eduard.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -155,4 +156,118 @@ public class IssueServiceImpl implements IssueService {
 		return days;
 	}
 
+	@Override
+	public List<Integer> searchInIssues(String search, int n) {
+		Map<Integer, Map<String, List<Integer>>> searchResults = new TreeMap<>(Collections.reverseOrder());
+		int issueNumberCounter = 0;
+		int summaryCounter = 0;
+		int descriptionCounter = 0;
+		List<Issue> issues = issueRepository.getAllIssues();
+		String[] words = search.split(" ");
+		for (Issue issue : issues) {
+			issueNumberCounter = 0;
+			summaryCounter = 0;
+			descriptionCounter = 0;
+			for (String word : words) {
+				if (word.chars().allMatch(Character::isDigit)) {
+					if (Integer.valueOf(word) == issue.getIssueNumber()) {
+						issueNumberCounter++;
+					}
+				}
+				if (issue.getSummary().toLowerCase().contains(word.toLowerCase())) {
+					summaryCounter++;
+				}
+				if (issue.getDescription().toLowerCase().contains(word.toLowerCase())) {
+					descriptionCounter++;
+				}
+			}
+			if (issueNumberCounter != 0 || summaryCounter != 0 || descriptionCounter != 0) {
+				Map<String, List<Integer>> priorityAndIssueId;
+				if (issueNumberCounter != 0) {
+					if (searchResults.containsKey(issueNumberCounter)) {
+						priorityAndIssueId = searchResults.get(issueNumberCounter);
+					} else {
+						priorityAndIssueId = new HashMap<>();
+					}
+					if (priorityAndIssueId.containsKey("H")) {
+						List<Integer> issuesId = priorityAndIssueId.get("H");
+						issuesId.add(issue.getId());
+						priorityAndIssueId.put("H", issuesId);
+					} else {
+						List<Integer> issuesId = new ArrayList<>();
+						issuesId.add(issue.getId());
+						priorityAndIssueId.put("H", issuesId);
+					}
+					searchResults.put(issueNumberCounter, priorityAndIssueId);
+				}
+				if (summaryCounter != 0) {
+					if (searchResults.containsKey(summaryCounter)) {
+						priorityAndIssueId = searchResults.get(summaryCounter);
+					} else {
+						priorityAndIssueId = new HashMap<>();
+					}
+					if (priorityAndIssueId.containsKey("M")) {
+						List<Integer> issuesId = priorityAndIssueId.get("M");
+						issuesId.add(issue.getId());
+						priorityAndIssueId.put("M", issuesId);
+					} else {
+						List<Integer> issuesId = new ArrayList<>();
+						issuesId.add(issue.getId());
+						priorityAndIssueId.put("M", issuesId);
+					}
+					searchResults.put(summaryCounter, priorityAndIssueId);
+				}
+				if (descriptionCounter != 0) {
+					if (searchResults.containsKey(descriptionCounter)) {
+						priorityAndIssueId = searchResults.get(descriptionCounter);
+					} else {
+						priorityAndIssueId = new HashMap<>();
+					}
+					if (priorityAndIssueId.containsKey("L")) {
+						List<Integer> issuesId = priorityAndIssueId.get("L");
+						issuesId.add(issue.getId());
+						priorityAndIssueId.put("L", issuesId);
+					} else {
+						List<Integer> issuesId = new ArrayList<>();
+						issuesId.add(issue.getId());
+						priorityAndIssueId.put("L", issuesId);
+					}
+					searchResults.put(descriptionCounter, priorityAndIssueId);
+				}
+			}
+		}
+		List<Integer> issuesToShow = new ArrayList<>();
+		for (Map.Entry<Integer, Map<String, List<Integer>>> entry : searchResults.entrySet()) {
+			Map<String, List<Integer>> priorityAndIssueId = entry.getValue();
+			if (priorityAndIssueId.containsKey("H")) {
+				List<Integer> issuesCandidateForShowing = priorityAndIssueId.get("H");
+				for (Integer i : issuesCandidateForShowing) {
+					if (n != 0) {
+						issuesToShow.add(i);
+						n--;
+					} else {
+						break;
+					}
+
+				}
+			}
+//			if (n == 0) {
+//				break;
+//			} else {
+//				if (priorityAndIssueId.containsKey("M")) {
+//					List<Integer> issuesCandidateForShowing = priorityAndIssueId.get("M");
+//					for (Integer i : issuesCandidateForShowing) {
+//						if (n != 0) {
+//							issuesToShow.add(i);
+//							n--;
+//						} else {
+//							break;
+//						}
+//
+//					}
+//				}
+//			}
+		}
+		return issuesToShow;
+	}
 }
