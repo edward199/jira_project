@@ -40,6 +40,7 @@ public class SearchIssue {
 		issuesId2.add(23);
 		issuesId2.add(24);
 		issuesId2.add(26);
+		issuesId2.add(27);
 		toAdd.put("L", issuesId2);
 		searchResults.put(3, toAdd);
 		toAdd = new HashMap<>();
@@ -62,13 +63,31 @@ public class SearchIssue {
 
 	public static void getIssuesIdToShow(Map<Integer, Map<String, Set<Integer>>> mapWithIssues, int n) {
 		Set<Integer> issuesToShow = new LinkedHashSet<>();
+		n = searchForHs(mapWithIssues, n, issuesToShow);
+		if (n != 0) {
+			n = searchForMs(mapWithIssues, n, issuesToShow);
+		}
+		if (n != 0) {
+			n = searchForLs(mapWithIssues, n, issuesToShow);
+
+		}
+		System.out.println("Exact");
+		System.out.println(issuesToShow);
+	}
+
+	private static int searchForHs(Map<Integer, Map<String, Set<Integer>>> mapWithIssues, int n,
+			Set<Integer> issuesToShow) {
 		for (Map.Entry<Integer, Map<String, Set<Integer>>> entryH : mapWithIssues.entrySet()) {
 			Map<String, Set<Integer>> mapWithPriorityAndIssuesIdsH = entryH.getValue();
 			if (n != 0) {
 				if (mapWithPriorityAndIssuesIdsH.containsKey("H")) {
 					if (mapWithPriorityAndIssuesIdsH.get("H").size() == 1) {
-						issuesToShow.addAll(mapWithPriorityAndIssuesIdsH.get("H"));
-						n--;
+						Set<Integer> singleSet = mapWithPriorityAndIssuesIdsH.get("M");
+						Iterator<Integer> setIt = singleSet.iterator();
+						if (!issuesToShow.contains(setIt.next())) {
+							issuesToShow.addAll(mapWithPriorityAndIssuesIdsH.get("H"));
+							n--;
+						}
 					} else {
 						if (n != 0) {
 							if (mapWithPriorityAndIssuesIdsH.get("H").size() > 1) {
@@ -131,50 +150,80 @@ public class SearchIssue {
 				break;
 			}
 		}
-		if (n != 0) {
-			for (Map.Entry<Integer, Map<String, Set<Integer>>> entryM : mapWithIssues.entrySet()) {
-				Map<String, Set<Integer>> mapWithPriorityAndIssuesIdsM = entryM.getValue();
-				if (mapWithPriorityAndIssuesIdsM.containsKey("M")) {
-					if (mapWithPriorityAndIssuesIdsM.get("M").size() == 1) {
+		return n;
+	}
+
+	private static int searchForMs(Map<Integer, Map<String, Set<Integer>>> mapWithIssues, int n,
+			Set<Integer> issuesToShow) {
+		for (Map.Entry<Integer, Map<String, Set<Integer>>> entryM : mapWithIssues.entrySet()) {
+			Map<String, Set<Integer>> mapWithPriorityAndIssuesIdsM = entryM.getValue();
+			if (mapWithPriorityAndIssuesIdsM.containsKey("M")) {
+				if (mapWithPriorityAndIssuesIdsM.get("M").size() == 1) {
+					Set<Integer> singleSet = mapWithPriorityAndIssuesIdsM.get("M");
+					Iterator<Integer> setIt = singleSet.iterator();
+					if (!issuesToShow.contains(setIt.next())) {
 						issuesToShow.addAll(mapWithPriorityAndIssuesIdsM.get("M"));
 						n--;
-					} else {
-						if (n != 0) {
-							if (mapWithPriorityAndIssuesIdsM.get("M").size() > 1) {
-								Set<Integer> issuesWithM = mapWithPriorityAndIssuesIdsM.get("M");
-								for (Map.Entry<Integer, Map<String, Set<Integer>>> entryL : mapWithIssues.entrySet()) {
-									Map<String, Set<Integer>> mapWithPriorityAndIssuesIdsL = entryL.getValue();
-									if (mapWithPriorityAndIssuesIdsL.containsKey("L")) {
-										Set<Integer> issuesWithL = mapWithPriorityAndIssuesIdsL.get("L");
+					}
+				} else {
+					if (n != 0) {
+						if (mapWithPriorityAndIssuesIdsM.get("M").size() > 1) {
+							Set<Integer> issuesWithM = mapWithPriorityAndIssuesIdsM.get("M");
+							for (Map.Entry<Integer, Map<String, Set<Integer>>> entryL : mapWithIssues.entrySet()) {
+								Map<String, Set<Integer>> mapWithPriorityAndIssuesIdsL = entryL.getValue();
+								if (mapWithPriorityAndIssuesIdsL.containsKey("L")) {
+									Set<Integer> issuesWithL = mapWithPriorityAndIssuesIdsL.get("L");
 
-										for (Integer iL : issuesWithL) {
-											Iterator<Integer> itrM = issuesWithM.iterator();
-											if (n != 0) {
-												while (itrM.hasNext()) {
-													int value = itrM.next();
-													if (iL == value) {
-														if (!issuesToShow.contains(iL)) {
-															issuesToShow.add(iL);
-															itrM.remove();
-															n--;
-														}
+									for (Integer iL : issuesWithL) {
+										Iterator<Integer> itrM = issuesWithM.iterator();
+										if (n != 0) {
+											while (itrM.hasNext()) {
+												int value = itrM.next();
+												if (iL == value) {
+													if (!issuesToShow.contains(iL)) {
+														issuesToShow.add(iL);
+														itrM.remove();
+														n--;
 													}
 												}
-											} else {
-												break;
 											}
+										} else {
+											break;
 										}
 									}
 								}
 							}
-						} else {
-							break;
 						}
+					} else {
+						break;
 					}
 				}
 			}
 		}
-		System.out.println("Exact");
-		System.out.println(issuesToShow);
+		return n;
+	}
+
+	private static int searchForLs(Map<Integer, Map<String, Set<Integer>>> mapWithIssues, int n,
+			Set<Integer> issuesToShow) {
+		for (Map.Entry<Integer, Map<String, Set<Integer>>> entryL : mapWithIssues.entrySet()) {
+			Map<String, Set<Integer>> mapWithPriorityAndIssuesIdsL = entryL.getValue();
+			if (mapWithPriorityAndIssuesIdsL.containsKey("L")) {
+				Set<Integer> issuesWithL = mapWithPriorityAndIssuesIdsL.get("L");
+				Iterator<Integer> itrL = issuesWithL.iterator();
+				if (n != 0) {
+					while (itrL.hasNext()) {
+						int value = itrL.next();
+						if (!issuesToShow.contains(value)) {
+							issuesToShow.add(value);
+							itrL.remove();
+							n--;
+						}
+					}
+				} else {
+					break;
+				}
+			}
+		}
+		return n;
 	}
 }
