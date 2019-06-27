@@ -41,7 +41,6 @@ public class IssueServiceImpl implements IssueService {
 
 	}
 
-	@Transactional
 	@Override
 	public List<IssueDTO> getIssues(int projectId) {
 
@@ -54,7 +53,6 @@ public class IssueServiceImpl implements IssueService {
 
 	}
 
-	@Transactional
 	@Override
 	public List<IssueDTO> showIssuesAroundADate(int n, String date) {
 
@@ -234,6 +232,7 @@ public class IssueServiceImpl implements IssueService {
 					}
 					searchResults.put(descriptionCounter, priorityAndIssueId);
 				}
+				System.out.println("Uraa");
 			}
 		}
 		List<Integer> issuesToShow = new ArrayList<>();

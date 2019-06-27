@@ -32,7 +32,6 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	@Transactional
 	public List<ProjectDTO> getProjects() {
 		List<Project> projects = projectRepository.getProjects();
 		List<ProjectDTO> projectsDTO = new ArrayList<>();
@@ -43,7 +42,6 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	@Transactional
 	public ProjectDTO getProjectByProjectKey(String projectKey) {
 
 		Project project = projectRepository.getProjectByProjectKey(projectKey);

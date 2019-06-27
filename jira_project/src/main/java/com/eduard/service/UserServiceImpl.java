@@ -44,7 +44,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
 	public List<UserResponseDTO> getUsers() {
 		List<User> users = userRepository.getUsers();
 		List<UserResponseDTO> usersDTO = new ArrayList<>();
@@ -55,7 +54,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
 	public List<UserResponseDTO> getUsersNewerThanADate(Timestamp dateToCompare) {
 		List<User> users = userRepository.getUsersNewerThanADate(dateToCompare);
 		List<UserResponseDTO> usersDTO = new ArrayList<>();
@@ -66,7 +64,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
 	public UserResponseDTO getUserByUsername(String username) {
 
 		User user = userRepository.getUserByUsername(username);
