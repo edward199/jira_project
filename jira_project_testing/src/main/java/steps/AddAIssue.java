@@ -44,17 +44,17 @@ public class AddAIssue extends Steps {
 	public void enterTheIssueDetails() {
 		driver.findElement(By.id("parentId")).sendKeys("15");
 		driver.findElement(By.id("projectKey")).sendKeys("AEP");
-		driver.findElement(By.id("issueNumber")).sendKeys("37");
+		driver.findElement(By.id("issueNumber")).sendKeys("26");
 		driver.findElement(By.id("projectId")).sendKeys("1");
-		driver.findElement(By.id("reporter")).sendKeys("Alin");
-		driver.findElement(By.id("creator")).sendKeys("Gheorghe");
-		driver.findElement(By.id("summary")).sendKeys("Fix this");
+		driver.findElement(By.id("reporter")).sendKeys("Nicu");
+		driver.findElement(By.id("creator")).sendKeys("Alin");
+		driver.findElement(By.id("summary")).sendKeys("Fix");
 		driver.findElement(By.id("description")).sendKeys("This is another issue fixed");
-		driver.findElement(By.id("created")).sendKeys("24/07/2019");
-		driver.findElement(By.id("updated")).sendKeys("24/07/2019");
-		driver.findElement(By.id("duedate")).sendKeys("30/07/2019");
-		driver.findElement(By.id("timeSpent")).sendKeys("18");
-		driver.findElement(By.id("timeEstimate")).sendKeys("74");
+		driver.findElement(By.id("created")).sendKeys("04/08/2019");
+		driver.findElement(By.id("updated")).sendKeys("04/08/2019");
+		driver.findElement(By.id("duedate")).sendKeys("31/07/2019");
+		driver.findElement(By.id("timeSpent")).sendKeys("28");
+		driver.findElement(By.id("timeEstimate")).sendKeys("94");
 	}
 
 	@When("I press the $button button")
