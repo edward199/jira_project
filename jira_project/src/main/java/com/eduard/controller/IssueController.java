@@ -84,7 +84,7 @@ public class IssueController {
 
 	@GetMapping(value = "/search/{search}/{n}")
 	public String searchThroughIssues(@PathVariable("n") int n, @PathVariable("search") String search, ModelMap model) {
-		List<Integer> issuesSearched = issueService.searchInIssues(search, n);
+		List<IssueDTO> issuesSearched = issueService.searchInIssues(search, n);
 		model.addAttribute("issuesSearched", issuesSearched);
 		return "list-issues-searched";
 	}
